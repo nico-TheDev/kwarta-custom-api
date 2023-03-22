@@ -36,6 +36,10 @@ async function run() {
     return data;
 }
 
+app.get("/favicon.ico", (req, res) => {
+    res.sendStatus(404);
+});
+
 app.get("/", async (req, res) => {
     try {
         const data = await run();
