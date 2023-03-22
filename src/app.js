@@ -13,8 +13,8 @@ app.use(
     helmet.contentSecurityPolicy({
         useDefaults: true,
         directives: {
-            // Allow loading of resources from the specified source
-            "default-src": ["'self'", "https://kwarta-custom-api.onrender.com"],
+            // Allow all inline scripts and styles
+            "default-src": ["'self'", "'unsafe-inline'"],
         },
     })
 );
@@ -44,9 +44,9 @@ async function run() {
     return data;
 }
 
-app.get("/favicon.ico", (req, res) => {
-    res.sendStatus(404);
-});
+// app.get("/favicon.ico", (req, res) => {
+//     res.sendStatus(404);
+// });
 
 app.get("/", async (req, res) => {
     try {
