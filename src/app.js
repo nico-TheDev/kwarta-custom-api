@@ -11,10 +11,9 @@ const app = express();
 app.use(morgan("dev"));
 app.use(
     helmet.contentSecurityPolicy({
-        useDefaults: true,
+        useDefaults: false,
         directives: {
-            // Allow all inline scripts and styles
-            "default-src": ["'self'", "'unsafe-inline'"],
+            "default-src": ["'self'", "*"],
         },
     })
 );
@@ -44,10 +43,6 @@ async function run() {
     return data;
 }
 
-// app.get("/favicon.ico", (req, res) => {
-//     res.sendStatus(404);
-// });
-
 app.get("/", async (req, res) => {
     try {
         const data = await run();
@@ -58,7 +53,7 @@ app.get("/", async (req, res) => {
             source: "Philippine Statistics Authority",
         });
     } catch (err) {
-        res.json({
+        res.status(404).json({
             message: "Error",
             error: err,
         });
