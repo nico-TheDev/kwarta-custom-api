@@ -6,9 +6,6 @@ const puppeteer = require("puppeteer");
 
 require("dotenv").config();
 
-const middlewares = require("./middlewares");
-const api = require("./api");
-
 const app = express();
 
 app.use(morgan("dev"));
@@ -55,7 +52,5 @@ app.get("/", async (req, res) => {
         });
     }
 });
-
-app.use("/api/v1", api);
 
 module.exports = app;
