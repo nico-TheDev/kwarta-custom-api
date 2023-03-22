@@ -9,7 +9,15 @@ require("dotenv").config();
 const app = express();
 
 app.use(morgan("dev"));
-app.use(helmet());
+app.use(
+    helmet.contentSecurityPolicy({
+        useDefaults: true,
+        directives: {
+            // Allow loading of resources from the specified source
+            "default-src": ["'self'", "https://kwarta-custom-api.onrender.com"],
+        },
+    })
+);
 app.use(cors());
 app.use(express.json());
 
