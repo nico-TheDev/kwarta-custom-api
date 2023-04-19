@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
-const { scrapeLogic } = require("./scrapeLogic");
+const { scrapeInflation, scrapeInvestments, scrapeNews, scrapeStocks } = require("./scrapeLogic");
 
 require("dotenv").config();
 
@@ -17,8 +17,17 @@ app.get("/", (req, res) => {
     res.send("Custom API for Kwarta !");
 });
 
-app.get("/api", (req, res) => {
-    scrapeLogic(res);
+app.get("/inflation", (req, res) => {
+    scrapeInflation(res);
+});
+app.get("/investment", (req, res) => {
+    scrapeInvestments(req, res);
+});
+app.get("/stocks", (req, res) => {
+    scrapeStocks(res);
+});
+app.get("/news", (req, res) => {
+    scrapeNews(res);
 });
 
 module.exports = app;
