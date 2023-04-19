@@ -89,6 +89,7 @@ async function scrapeInvestments(req, res) {
         // Go to your site
         await page.goto("https://online.sunlife.com.ph/cdt/eCalcAge/investmentCalculator", {
             waitUntil: "load",
+            timeout: 0,
         });
 
         // TYPE INTO THE INPUTS
