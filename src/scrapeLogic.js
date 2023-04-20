@@ -1,7 +1,15 @@
 const puppeteer = require("puppeteer");
 
 const options = {
-    args: ["--disable-setuid-sandbox", "--no-sandbox", "--single-process", "--no-zygote"],
+    args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+        "--disable-web-security",
+        "--disable-features=IsolateOrigins",
+        "--disable-site-isolation-trials",
+    ],
     executablePath:
         process.env.NODE_ENV === "production"
             ? process.env.PUPPETEER_EXECUTABLE_PATH
