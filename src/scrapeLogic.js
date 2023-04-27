@@ -206,8 +206,6 @@ async function scrapeStocks(res) {
         res.status(300).json({
             trendingStocks,
             marketMovers,
-            // indexSummary,
-            // topDivStocks
         });
     } catch (err) {
         console.error(err);
