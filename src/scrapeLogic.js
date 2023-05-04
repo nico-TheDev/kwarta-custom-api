@@ -31,6 +31,7 @@ async function scrapeInflation(res) {
                 date: e.querySelector("td:first-child").innerText,
                 month: e.querySelector("td:nth-child(4)").innerText,
                 rate: e.querySelector("td:nth-child(5)").innerText,
+                prevRate: e.querySelector("td:nth-child(6)").innerText,
             }))
         );
         // Close browser.
