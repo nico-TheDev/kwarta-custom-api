@@ -81,7 +81,7 @@ async function scrapeNews(res) {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: err });
+        res.send(`Something Went Wrong:${err}`);
     } finally {
         await browser.close();
     }
@@ -186,23 +186,6 @@ async function scrapeStocks(res) {
                 };
             })
         );
-
-        // await page.goto("https://edge.pse.com.ph/");
-
-        // const indexSummary = await page.evaluate(() =>
-        //     Array.from(
-        //         document.querySelectorAll(".index > table:nth-child(2) > tbody:nth-child(3) > tr"),
-        //         (e) => {
-        //             return {
-        //                 label: e.querySelector("td.label").textContent,
-        //                 price: e.querySelector("td:nth-child(2)").textContent,
-        //                 priceChange: e.querySelector("td:nth-child(3)").textContent.trim(),
-        //                 pricePercentage: e.querySelector("td:nth-child(4)").textContent.trim(),
-        //             };
-        //         }
-        //     )
-        // );
-
         // Close browser.
         res.status(300).json({
             trendingStocks,
@@ -210,7 +193,7 @@ async function scrapeStocks(res) {
         });
     } catch (err) {
         console.error(err);
-        res.status(400).json({ error: err, message: "Something Went Wrong" });
+        res.send(`Something Went Wrong:${err}`);
     } finally {
         await browser.close();
     }
