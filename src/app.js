@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Custom API for Kwarta !");
+    res.send("Custom API for CASH !");
 });
 
 app.get("/inflation", (req, res) => {
