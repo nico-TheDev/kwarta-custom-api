@@ -55,6 +55,8 @@ async function scrapeNews(res) {
         // Create a page
         const page = await browser.newPage();
 
+        await page.setDefaultNavigationTimeout(0);
+
         // Go to your site
         await page.goto("https://ph.investing.com/news/most-popular-news", {
             waitUntil: "load",
@@ -153,6 +155,8 @@ async function scrapeStocks(res) {
     try {
         // Create a page
         const page = await browser.newPage();
+
+        await page.setDefaultNavigationTimeout(0);
 
         // Go to your site
         await page.goto("https://ph.investing.com/equities/trending-stocks", {
