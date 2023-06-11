@@ -56,7 +56,10 @@ async function scrapeNews(res) {
         const page = await browser.newPage();
 
         // Go to your site
-        await page.goto("https://ph.investing.com/news/most-popular-news");
+        await page.goto("https://ph.investing.com/news/most-popular-news", {
+            waitUntil: "load",
+            timeout: 0,
+        });
 
         const newsList = await page.evaluate(() =>
             Array.from(document.querySelectorAll("div.largeTitle .articleItem"), (e) => {
@@ -153,7 +156,10 @@ async function scrapeStocks(res) {
         const page = await browser.newPage();
 
         // Go to your site
-        await page.goto("https://ph.investing.com/equities/trending-stocks");
+        await page.goto("https://ph.investing.com/equities/trending-stocks", {
+            waitUntil: "load",
+            timeout: 0,
+        });
 
         const trendingStocks = await page.evaluate(() =>
             Array.from(document.querySelectorAll("div.chartPopWrap  .marketChart"), (e) => {
