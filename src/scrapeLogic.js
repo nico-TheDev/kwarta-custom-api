@@ -50,18 +50,22 @@ async function scrapeInflation(res) {
 
 async function scrapeNews(res) {
     // Launch the browser
-    const browser = await puppeteer.launch(options);
+    const browser = await puppeteer.launch({ ...options });
     try {
         // Create a page
         const page = await browser.newPage();
 
         // Go to your site
         await page.goto("https://ph.investing.com/news/most-popular-news", {
+            timeout: 0,
             waitUntil: "load",
         });
 
+        await page.waitForSelector("div.largeTitle .articleItem");
+
         const newsList = await page.evaluate(() =>
-            Array.from(document.querySelectorAll("div.largeTitle .articleItem"), (e) => {
+            Array.from(document.querySelectorAll("div.largeTitle article.articleItem"), (e) => {
+                console.log(e);
                 return {
                     title: e.querySelector(".textDiv a.title").textContent,
                     link:
@@ -157,7 +161,10 @@ async function scrapeStocks(res) {
         // Go to your site
         await page.goto("https://ph.investing.com/equities/trending-stocks", {
             waitUntil: "load",
+            timeout: 0,
         });
+
+        await page.waitForSelector("div.chartPopWrap  .marketChart");
 
         const trendingStocks = await page.evaluate(() =>
             Array.from(document.querySelectorAll("div.chartPopWrap  .marketChart"), (e) => {
